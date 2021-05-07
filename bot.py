@@ -449,7 +449,11 @@ class Schedule(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(help="Displays a personal schedule for today or any specified day")
+    @commands.command(help="Displays a personal schedule for today")
+    async def now(self, ctx, user: typing.Optional[discord.Member]):
+        schedule(self, ctx, datetime.date.today(), typing.Optional[discord.Member])
+
+    @commands.command(help="Displays a personal schedule for today or any specified day", aliases=['sched'])
     async def schedule(self, ctx, date: typing.Optional[Date], *, user: typing.Optional[discord.Member]):
         if not date:
             date = datetime.date.today()
